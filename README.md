@@ -1,9 +1,9 @@
-# zanysoft/laravel-zip
+# dcorreah/laravel-zip
 
-[![Downloads](https://img.shields.io/packagist/dt/zanysoft/laravel-zip.svg?style=flat-square)](https://packagist.org/packages/zanysoft/laravel-zip)
-[![GitHub license](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/zanysoft/laravel-zip/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/packagist/dt/dcorreah/laravel-zip.svg?style=flat-square)](https://packagist.org/packages/dcorreah/laravel-zip)
+[![GitHub license](https://img.shields.io/badge/License-MIT-informational.svg)](https://github.com/dcorreah/laravel-zip/blob/master/LICENSE)
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-informational.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
-[![GitHub tag](https://img.shields.io/github/tag/ZanySoft/laravel-zip.svg?style=flat&logo=laravel&color=informational)](https://github.com/zanysoft/laravel-zip/tags)
+[![GitHub tag](https://img.shields.io/github/tag/dcorreah/laravel-zip.svg?style=flat&logo=laravel&color=informational)](https://github.com/dcorreah/laravel-zip/tags)
 
 
 
@@ -15,20 +15,20 @@ This library was written to simplify and automate Zip files management using [PH
 ### Installation
 Require this package in your composer.json and update composer. This will download the package.
 
-    composer require zanysoft/laravel-zip
+    composer require dcorreah/laravel-zip
 
 After updating composer, add the ServiceProvider to the providers array in config/app.php
 
-    ZanySoft\Zip\ZipServiceProvider::class,
+    dcorreah\Zip\ZipServiceProvider::class,
 
 You can optionally use the facade for shorter code. Add this to your facades:
 
-    'Zip' => ZanySoft\Zip\Facades\Zip::class,
+    'Zip' => dcorreah\Zip\Facades\Zip::class,
 
 
 ## Zip usage
 
-use `ZanySoft\Zip\Zip` class only use `Zip` is made to handle a zip file.
+use `dcorreah\Zip\Zip` class only use `Zip` is made to handle a zip file.
 
 - include the Zip class at top:
 ```php
@@ -201,11 +201,11 @@ use Zip;
 
 ## ZipManager usage
 
-The `\ZanySoft\Zip\ZipManager` can handle multiple `ZanySoft\Zip\Zip` objects.
+The `\dcorreah\Zip\ZipManager` can handle multiple `dcorreah\Zip\Zip` objects.
 
 - include the Zip and ZipManager class at top:
 ```php
-use ZanySoft\Zip\ZipManager;
+use dcorreah\Zip\ZipManager;
 use Zip;
 ```
 

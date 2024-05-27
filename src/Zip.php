@@ -1,18 +1,18 @@
 <?php
 
-namespace ZanySoft\Zip;
+namespace dcorreah\Zip;
 
 use Exception;
 use Illuminate\Support\Str;
 use ZipArchive;
 
 /**
- * ZanySoft\Zip - ZipArchive toolbox
+ * dcorreah\Zip - ZipArchive toolbox
  *
  * This class provide methods to handle single zip archive
  *
- * @package     ZanySoft\Zip
- * @author      ZanySoft <info@zanysoft.co>
+ * @package     dcorreah\Zip
+ * @author      dcorreah <info@dcorreah.co>
  * @license     MIT
  *
  */
@@ -31,7 +31,7 @@ class Zip
      *
      * @var array
      */
-    private array $supported_skip_modes = ['HIDDEN', 'ZANYSOFT', 'ALL', 'NONE'];
+    private array $supported_skip_modes = ['HIDDEN', 'dcorreah', 'ALL', 'NONE'];
 
     /**
      * Mask for the extraction folder (if it should be created)
@@ -105,6 +105,7 @@ class Zip
      *
      * @param string $zip_file ZIP file name
      *
+     * @throws Exception
      */
     public function __construct($zip_file = null)
     {
@@ -119,6 +120,7 @@ class Zip
      * @param string $zip_file ZIP file name
      *
      * @return  Zip
+     * @throws Exception
      */
     public function open(string $zip_file)
     {
@@ -158,6 +160,7 @@ class Zip
      * @param bool $overwrite overwrite existing file (if any)
      *
      * @return  Zip
+     * @throws Exception
      */
     public function create(string $zip_file, bool $overwrite = false)
     {
@@ -187,9 +190,10 @@ class Zip
     /**
      * Set files to skip
      *
-     * @param string $mode [HIDDEN, ZANYSOFT, ALL, NONE]
+     * @param string $mode [HIDDEN, dcorreah, ALL, NONE]
      *
      * @return  Zip
+     * @throws Exception
      */
     final public function setSkipped($mode)
     {
@@ -205,7 +209,7 @@ class Zip
     }
 
     /**
-     * Get current skip mode (HIDDEN, ZANYSOFT, ALL, NONE)
+     * Get current skip mode (HIDDEN, dcorreah, ALL, NONE)
      *
      * @return  string
      */
@@ -244,6 +248,7 @@ class Zip
      * @param string $path
      *
      * @return  Zip
+     * @throws Exception
      */
     public function setPath(string $path)
     {
@@ -346,6 +351,7 @@ class Zip
      * Get a list of files in archive (array)
      *
      * @return  array
+     * @throws Exception
      */
     public function listFiles()
     {
@@ -371,6 +377,7 @@ class Zip
      * @param int $flags (optional) ZipArchive::FL_NOCASE, ZipArchive::FL_NODIR seperated by bitwise OR
      *
      * @return  bool
+     * @throws Exception
      */
     public function has($file, $flags = 0)
     {
@@ -388,6 +395,7 @@ class Zip
      * @param mixed $files (optional) a filename or an array of filenames
      *
      * @return  bool
+     * @throws Exception
      */
     public function extract($destination, $files = null)
     {
@@ -449,6 +457,7 @@ class Zip
      * @param bool $flatroot in case of directory, specify if root folder should be flatten or not
      *
      * @return  Zip
+     * @throws Exception
      */
     public function add($file_path, $flatroot = false)
     {
@@ -483,6 +492,7 @@ class Zip
      * @param mixed $filename filename to delete or an array of filenames
      *
      * @return  Zip
+     * @throws Exception
      */
     public function delete($filename)
     {
@@ -509,6 +519,7 @@ class Zip
      * Close the zip archive
      *
      * @return  bool
+     * @throws Exception
      */
     public function close()
     {
@@ -541,7 +552,7 @@ class Zip
                 continue;
             }
 
-            if ($name[0] == '.' and @$name[1] == '_' and in_array($this->skip_mode, ['ZANYSOFT', 'ALL'])) {
+            if ($name[0] == '.' and @$name[1] == '_' and in_array($this->skip_mode, ['dcorreah', 'ALL'])) {
                 continue;
             }
 
@@ -577,7 +588,7 @@ class Zip
                 return;
             }
 
-            if ($real_name[0] == '.' and @$real_name[1] == '_' and in_array($this->skip_mode, ['ZANYSOFT', 'ALL'])) {
+            if ($real_name[0] == '.' and @$real_name[1] == '_' and in_array($this->skip_mode, ['dcorreah', 'ALL'])) {
                 return;
             }
         }
@@ -628,6 +639,7 @@ class Zip
      *
      * @param string $file File to delete (zippath)
      *
+     * @throws Exception
      */
     private function deleteItem($file)
     {
@@ -645,6 +657,7 @@ class Zip
      * @param int $flags ZIP status code
      *
      * @return  \ZipArchive
+     * @throws Exception
      */
     private static function openZipFile($zip_file, $flags = null)
     {

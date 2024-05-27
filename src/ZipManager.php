@@ -1,20 +1,19 @@
 <?php
 
-namespace ZanySoft\Zip;
+namespace dcorreah\Zip;
 
 use Exception;
 
 /**
  * Multiple ZipArchive manager
  *
- * @package     ZanySoft/Zip
- * @author      ZanySof <info@zanysoft.co>
+ * @package     dcorreah/Zip
+ * @author      ZanySof <info@dcorreah.co>
  * @license     MIT
  *
  */
 class ZipManager
 {
-
     /**
      * Array of managed zip files
      *
@@ -25,11 +24,11 @@ class ZipManager
     /**
      * Add a \Coodojo\Zip\Zip object to manager
      *
-     * @param \ZanySoft\Zip\Zip $zip
+     * @param Zip $zip
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
      */
-    public function addZip(\ZanySoft\Zip\Zip $zip)
+    public function addZip(Zip $zip)
     {
         $this->zip_archives[] = $zip;
 
@@ -39,11 +38,12 @@ class ZipManager
     /**
      * Remove a \Coodojo\Zip\Zip object from manager
      *
-     * @param \ZanySoft\Zip\Zip $zip
+     * @param Zip $zip
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
+     * @throws Exception
      */
-    public function removeZip(\ZanySoft\Zip\Zip $zip)
+    public function removeZip(Zip $zip)
     {
         $archive_key = array_search($zip, $this->zip_archives, true);
 
@@ -77,7 +77,8 @@ class ZipManager
      *
      * @param int $zipId The zip id from self::listZips()
      *
-     * @return  \ZanySoft\Zip\Zip
+     * @return  Zip
+     * @throws Exception
      */
     public function getZip($zipId)
     {
@@ -94,7 +95,8 @@ class ZipManager
      *
      * @param string $path
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
+     * @throws Exception
      */
     public function setPath($path)
     {
@@ -130,7 +132,8 @@ class ZipManager
      *
      * @param int $mask
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
+     * @throws Exception
      */
     public function setMask($mask)
     {
@@ -165,6 +168,7 @@ class ZipManager
      * Get a list of files in Zips
      *
      * @return  array
+     * @throws Exception
      */
     public function listFiles()
     {
@@ -189,6 +193,7 @@ class ZipManager
      * @param array $files Array of files to extract
      *
      * @return  bool
+     * @throws Exception
      */
     public function extract($destination, $separate = true, $files = null)
     {
@@ -216,6 +221,7 @@ class ZipManager
      * @param bool $separate Specify if files should be placed in different directories
      *
      * @return  bool
+     * @throws Exception
      */
     public function merge($output_zip_file, $separate = true)
     {
@@ -226,7 +232,7 @@ class ZipManager
         try {
             $this->extract($temporary_folder, $separate, null);
 
-            $zip = \ZanySoft\Zip\Facades\Zip::create($output_zip_file);
+            $zip = \dcorreah\Zip\Facades\Zip::create($output_zip_file);
 
             $zip->add($temporary_folder, true)->close();
 
@@ -244,7 +250,8 @@ class ZipManager
      * @param mixed $file_name_or_array filename to add or an array of filenames
      * @param bool $flatten_root_folder in case of directory, specify if root folder should be flatten or not
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
+     * @throws Exception
      */
     public function add($file_name_or_array, $flatten_root_folder = false)
     {
@@ -264,7 +271,8 @@ class ZipManager
      *
      * @param mixed $file_name_or_array filename to add or an array of filenames
      *
-     * @return  \ZanySoft\Zip\ZipManager
+     * @return  ZipManager
+     * @throws Exception
      */
     public function delete($file_name_or_array)
     {
@@ -283,6 +291,7 @@ class ZipManager
      * Close Zips
      *
      * @return  bool
+     * @throws Exception
      */
     public function close()
     {
@@ -315,6 +324,7 @@ class ZipManager
 
     /**
      * @param string $folder
+     * @throws Exception
      */
     private static function recursiveUnlink($folder)
     {
