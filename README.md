@@ -32,7 +32,7 @@ use `dcorreah\Zip\Zip` class only use `Zip` is made to handle a zip file.
 
 - include the Zip class at top:
 ```php
-use Zip;
+use dcorreah\Zip\Facades\Zip;
 
 ```
 
@@ -206,7 +206,7 @@ The `\dcorreah\Zip\ZipManager` can handle multiple `dcorreah\Zip\Zip` objects.
 - include the Zip and ZipManager class at top:
 ```php
 use dcorreah\Zip\ZipManager;
-use Zip;
+use dcorreah\Zip\Facades\Zip;
 ```
 
 ### Basic operations
